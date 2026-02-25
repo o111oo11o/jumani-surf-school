@@ -38,6 +38,7 @@
   --shadow-btn: 0 4px 12px rgba(4, 188, 172, 0.25);
 
   --animate-wave-bounce: wave-bounce 800ms ease-in-out infinite alternate;
+  --animate-skeleton-shimmer: skeleton-shimmer 1.6s ease-in-out infinite;
 }
 
 /* Base styles */
@@ -69,4 +70,9 @@ html {
 @keyframes wave-bounce {
   0%, 100% { transform: scaleY(1) translateY(0); }
   50%       { transform: scaleY(2.2) translateY(-10px); }
+}
+
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
 }

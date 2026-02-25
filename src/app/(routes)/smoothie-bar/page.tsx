@@ -10,69 +10,17 @@ import { Card } from "@/components/ui/card";
 import { createMetadata } from "@/lib/utils/metadata";
 import { siteMeta } from "@/lib/constants/metadata";
 import {
-  hero as fallbackHero,
+  hero,
   barStory,
   menuHeading,
-  menuCategories as fallbackMenuCategories,
-  galleryImages as fallbackGallery,
+  menuCategories,
+  galleryImages,
   ctaBanner,
 } from "@/lib/constants/smoothie-bar";
-import {
-  getSmoothieProducts,
-  getSiteSettings,
-  getGalleryImages,
-} from "@/lib/sanity/queries";
-import { mergeHeroImage, resolveGallery } from "@/lib/sanity/helpers";
-import type { MenuCategory } from "@/types";
 
 export const metadata: Metadata = createMetadata(siteMeta.smoothieBar);
 
-const categoryLabels: Record<string, string> = {
-  smoothie: "Fresh Juices & Smoothies",
-  juice: "Fresh Juices & Smoothies",
-  "hot-drinks": "Coffee & Tea",
-  food: "Food & Snacks",
-  snacks: "Food & Snacks",
-};
-
-const categoryOrder = [
-  "Fresh Juices & Smoothies",
-  "Coffee & Tea",
-  "Food & Snacks",
-];
-
-export default async function SmoothieBarPage() {
-  const [cmsProducts, cmsGallery, cmsSettings] = await Promise.all([
-    getSmoothieProducts(),
-    getGalleryImages("smoothie-bar"),
-    getSiteSettings(),
-  ]);
-
-  const hero = mergeHeroImage(
-    fallbackHero,
-    cmsSettings?.pageHeroes?.smoothieBar,
-  );
-
-  let menuCategories: MenuCategory[];
-  if (cmsProducts.length > 0) {
-    const grouped = new Map<string, { name: string; description: string }[]>();
-    for (const product of cmsProducts) {
-      const label = categoryLabels[product.category] ?? product.category;
-      if (!grouped.has(label)) grouped.set(label, []);
-      grouped.get(label)!.push({
-        name: product.name,
-        description: product.description,
-      });
-    }
-    menuCategories = categoryOrder
-      .filter((label) => grouped.has(label))
-      .map((label) => ({ heading: label, items: grouped.get(label)! }));
-  } else {
-    menuCategories = fallbackMenuCategories;
-  }
-
-  const galleryImages = resolveGallery(cmsGallery, fallbackGallery);
-
+export default function SmoothieBarPage() {
   return (
     <>
       <HeroSection content={hero} />

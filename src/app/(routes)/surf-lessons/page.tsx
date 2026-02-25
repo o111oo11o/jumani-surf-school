@@ -11,58 +11,20 @@ import { PricingCard } from "@/components/shared/pricing-card";
 import { createMetadata } from "@/lib/utils/metadata";
 import { siteMeta } from "@/lib/constants/metadata";
 import {
-  hero as fallbackHero,
+  hero,
   stepsHeading,
   steps,
   pricingHeading,
-  pricingCards as fallbackPricingCards,
+  pricingCards,
   instructor,
   faqHeading,
-  faqs as fallbackFaqs,
+  faqs,
   ctaBanner,
 } from "@/lib/constants/surf-lessons";
-import { getSurfLessons, getFaqs, getSiteSettings } from "@/lib/sanity/queries";
-import { mergeHeroImage } from "@/lib/sanity/helpers";
-import type { PricingCard as PricingCardType, FAQItem } from "@/types";
 
 export const metadata: Metadata = createMetadata(siteMeta.surfLessons);
 
-function lessonTypeTag(type: string, featured: boolean): string | undefined {
-  if (featured && type === "beginner") return "Most Popular";
-  return undefined;
-}
-
-export default async function SurfLessonsPage() {
-  const [cmsLessons, cmsFaqs, cmsSettings] = await Promise.all([
-    getSurfLessons(),
-    getFaqs("surf-lessons"),
-    getSiteSettings(),
-  ]);
-
-  const hero = mergeHeroImage(
-    fallbackHero,
-    cmsSettings?.pageHeroes?.surfLessons,
-  );
-
-  const pricingCards: PricingCardType[] =
-    cmsLessons.length > 0
-      ? cmsLessons.map((lesson) => ({
-          tag: lessonTypeTag(lesson.lessonType, lesson.featured),
-          heading: lesson.title,
-          subtitle: "Private or Group",
-          description: lesson.description,
-          includes: lesson.highlights ?? [],
-          price: `from $${lesson.price}`,
-          ctaLabel: `Book ${lesson.title}`,
-          ctaHref: "/contact",
-        }))
-      : fallbackPricingCards;
-
-  const faqs: FAQItem[] =
-    cmsFaqs.length > 0
-      ? cmsFaqs.map((f) => ({ question: f.question, answer: f.answer }))
-      : fallbackFaqs;
-
+export default function SurfLessonsPage() {
   return (
     <>
       <HeroSection content={hero} />

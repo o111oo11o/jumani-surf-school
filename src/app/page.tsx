@@ -11,48 +11,22 @@ import { LocationMap } from "@/components/sections/location-map";
 import { CTABanner } from "@/components/sections/cta-banner";
 import { ServiceCard } from "@/components/shared/service-card";
 import {
-  hero as fallbackHero,
+  hero,
   services,
   servicesHeading,
   story,
   featuresHeading,
   features,
   testimonialsHeading,
-  testimonials as fallbackTestimonials,
+  testimonials,
   galleryHeading,
-  galleryImages as fallbackGallery,
+  galleryImages,
   locationHeading,
   locationDescription,
   ctaBanner,
 } from "@/lib/constants/homepage";
-import {
-  getTestimonials,
-  getSiteSettings,
-  getGalleryImages,
-} from "@/lib/sanity/queries";
-import { mergeHeroImage, resolveGallery } from "@/lib/sanity/helpers";
-import type { Testimonial } from "@/types";
 
-export default async function HomePage() {
-  const [cmsTestimonials, cmsGallery, cmsSettings] = await Promise.all([
-    getTestimonials(),
-    getGalleryImages("homepage"),
-    getSiteSettings(),
-  ]);
-
-  const hero = mergeHeroImage(fallbackHero, cmsSettings?.pageHeroes?.homepage);
-
-  const testimonials: Testimonial[] =
-    cmsTestimonials.length > 0
-      ? cmsTestimonials.map((t) => ({
-          quote: t.quote,
-          name: t.name,
-          origin: t.location,
-        }))
-      : fallbackTestimonials;
-
-  const galleryImages = resolveGallery(cmsGallery, fallbackGallery);
-
+export default function HomePage() {
   return (
     <>
       <HeroSection content={hero} />

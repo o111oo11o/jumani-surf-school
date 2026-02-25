@@ -8,7 +8,7 @@ import { BookingForm } from "@/components/shared/booking-form";
 import { createMetadata } from "@/lib/utils/metadata";
 import { siteMeta } from "@/lib/constants/metadata";
 import {
-  hero as fallbackHero,
+  hero,
   contactMethods,
   formHeading,
   locationHeading,
@@ -16,15 +16,10 @@ import {
   locationDirections,
   locationTransferNote,
 } from "@/lib/constants/contact";
-import { getSiteSettings } from "@/lib/sanity/queries";
-import { mergeHeroImage } from "@/lib/sanity/helpers";
 
 export const metadata: Metadata = createMetadata(siteMeta.contact);
 
-export default async function ContactPage() {
-  const cmsSettings = await getSiteSettings();
-  const hero = mergeHeroImage(fallbackHero, cmsSettings?.pageHeroes?.contact);
-
+export default function ContactPage() {
   return (
     <>
       <HeroSection content={hero} />

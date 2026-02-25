@@ -9,49 +9,19 @@ import { Card } from "@/components/ui/card";
 import { createMetadata } from "@/lib/utils/metadata";
 import { siteMeta } from "@/lib/constants/metadata";
 import {
-  hero as fallbackHero,
+  hero,
   stepsHeading,
   steps,
   boardsHeading,
-  boards as fallbackBoards,
+  boards,
   rentalInfoHeading,
   rentalInfo,
   ctaBanner,
 } from "@/lib/constants/board-rentals";
-import { getRentalItems, getSiteSettings } from "@/lib/sanity/queries";
-import { urlFor } from "@/lib/sanity/image";
-import { mergeHeroImage } from "@/lib/sanity/helpers";
-import type { BoardType } from "@/types";
 
 export const metadata: Metadata = createMetadata(siteMeta.boardRentals);
 
-export default async function BoardRentalsPage() {
-  const [cmsRentals, cmsSettings] = await Promise.all([
-    getRentalItems(),
-    getSiteSettings(),
-  ]);
-
-  const hero = mergeHeroImage(
-    fallbackHero,
-    cmsSettings?.pageHeroes?.boardRentals,
-  );
-
-  const boards: BoardType[] =
-    cmsRentals.length > 0
-      ? cmsRentals.map((item) => ({
-          image: item.image
-            ? urlFor(item.image).width(600).height(400).fit("crop").url()
-            : "/images/gallery11.jpg",
-          imageAlt: item.image?.alt ?? item.name,
-          name: item.name,
-          bestFor: item.category === "surfboard" ? "Surfers" : item.category,
-          description: item.description,
-          price: `from $${item.pricePerHour}/hr`,
-          ctaLabel: "Rent This Board",
-          ctaHref: "/contact",
-        }))
-      : fallbackBoards;
-
+export default function BoardRentalsPage() {
   return (
     <>
       <HeroSection content={hero} />
