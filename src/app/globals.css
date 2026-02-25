@@ -36,6 +36,8 @@
   --shadow-md: 0 4px 16px rgba(4, 188, 172, 0.08);
   --shadow-lg: 0 8px 32px rgba(4, 188, 172, 0.12);
   --shadow-btn: 0 4px 12px rgba(4, 188, 172, 0.25);
+
+  --animate-wave-bounce: wave-bounce 800ms ease-in-out infinite alternate;
 }
 
 /* Base styles */
@@ -62,4 +64,9 @@ html {
 /* Selection color */
 ::selection {
   background-color: color-mix(in srgb, var(--color-teal-deep) 20%, transparent);
+}
+
+@keyframes wave-bounce {
+  0%, 100% { transform: scaleY(1) translateY(0); }
+  50%       { transform: scaleY(2.2) translateY(-10px); }
 }
