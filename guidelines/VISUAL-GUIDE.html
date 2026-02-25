@@ -1,0 +1,1883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jumani Surf School — Visual Style Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal-deep: #04bcac;
+    --teal-mid: #42cca3;
+    --green-fresh: #6eda96;
+    --green-lime: #9ae687;
+    --lime-bright: #c8f17a;
+    --yellow-glow: #f9f871;
+
+    --teal-deep-10: #04bcac1a;
+    --teal-deep-20: #04bcac33;
+
+    --dark: #0a1f1c;
+    --dark-soft: #1a3330;
+    --sand-light: #f8f6f0;
+    --sand-warm: #ede8dc;
+    --white: #ffffff;
+    --text-body: #2c3e3a;
+    --text-muted: #5a7a72;
+
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', -apple-system, sans-serif;
+    --font-handwritten: 'Caveat', cursive;
+
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text-body);
+    background: var(--sand-light);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== COVER ===== */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: linear-gradient(160deg, var(--dark) 0%, var(--dark-soft) 40%, #0d3b35 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 60vw;
+    height: 60vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--teal-deep-20) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -15%;
+    left: -10%;
+    width: 50vw;
+    height: 50vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, #c8f17a15 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cover-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    border: 1px solid var(--teal-deep);
+    border-radius: 999px;
+    color: var(--teal-deep);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover h1 {
+    font-family: var(--font-display);
+    color: var(--white);
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover h1 em {
+    font-style: italic;
+    color: var(--lime-bright);
+  }
+
+  .cover-sub {
+    font-family: var(--font-display);
+    color: var(--teal-mid);
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-style: italic;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-meta {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    z-index: 1;
+    opacity: 0.7;
+  }
+
+  .cover-gradient-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--teal-deep), var(--teal-mid), var(--green-fresh), var(--green-lime), var(--lime-bright), var(--yellow-glow));
+  }
+
+  /* ===== TOC ===== */
+  .toc {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 3rem;
+  }
+
+  .toc h2 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+  }
+
+  .toc-list {
+    list-style: none;
+    counter-reset: toc;
+  }
+
+  .toc-list li {
+    counter-increment: toc;
+    border-bottom: 1px solid #d6d0c4;
+  }
+
+  .toc-list a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    text-decoration: none;
+    color: var(--text-body);
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .toc-list a:hover { color: var(--teal-deep); }
+
+  .toc-list a::before {
+    content: counter(toc, decimal-leading-zero);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    color: var(--teal-deep);
+    font-weight: 700;
+    min-width: 2rem;
+  }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+  }
+
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #c4bfb2, transparent);
+    margin: 0 auto;
+    max-width: 900px;
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal-deep);
+    margin-bottom: 1rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--teal-deep);
+  }
+
+  .section h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    color: var(--dark);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .section h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--dark);
+    margin: 2.5rem 0 0.75rem;
+  }
+
+  .section h3:first-of-type { margin-top: 2rem; }
+
+  .section p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    color: var(--text-body);
+  }
+
+  .section-intro {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    max-width: 680px;
+  }
+
+  /* ===== DESIGN PRINCIPLES CARDS ===== */
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 600px) {
+    .principles-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .principle-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: 1.75rem;
+    border: 1px solid #e6e1d6;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .principle-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(4, 188, 172, 0.08);
+  }
+
+  .principle-card .num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--lime-bright);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+
+  .principle-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .principle-card p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* ===== COLOR PALETTE ===== */
+  .palette-strip {
+    display: flex;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    height: 100px;
+    margin: 2rem 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+
+  .palette-strip .swatch {
+    flex: 1;
+    position: relative;
+    transition: flex 0.3s ease;
+    cursor: default;
+  }
+
+  .palette-strip .swatch:hover { flex: 1.8; }
+
+  .palette-strip .swatch span {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+
+  .palette-strip .swatch:hover span { opacity: 1; }
+
+  .color-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .color-card {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid #e6e1d6;
+    background: var(--white);
+  }
+
+  .color-card-swatch {
+    height: 80px;
+    position: relative;
+  }
+
+  .color-card-info {
+    padding: 0.75rem;
+  }
+
+  .color-card-info .name {
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--dark);
+    margin-bottom: 0.2rem;
+  }
+
+  .color-card-info .hex {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.03em;
+  }
+
+  .color-usage-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 600px) {
+    .color-usage-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .color-usage-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--white);
+    border-radius: var(--radius-md);
+    border: 1px solid #e6e1d6;
+  }
+
+  .color-usage-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .color-usage-text h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.25rem;
+  }
+
+  .color-usage-text p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ===== GRADIENT EXAMPLES ===== */
+  .gradient-samples {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 500px) {
+    .gradient-samples { grid-template-columns: 1fr 1fr 1fr; }
+  }
+
+  .gradient-sample {
+    height: 120px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: flex-end;
+    padding: 0.75rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gradient-sample span {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: rgba(0,0,0,0.3);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ===== TYPOGRAPHY ===== */
+  .type-showcase {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 2rem;
+    margin: 2rem 0;
+    border: 1px solid #e6e1d6;
+  }
+
+  .type-row {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  .type-row:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .type-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+
+  .type-tag {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal-deep);
+    background: var(--teal-deep-10);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  .type-sample-display {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.15;
+  }
+
+  .type-sample-body {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text-body);
+    line-height: 1.7;
+    max-width: 560px;
+  }
+
+  .type-sample-handwritten {
+    font-family: var(--font-handwritten);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--teal-deep);
+    line-height: 1.3;
+  }
+
+  .type-scale {
+    margin: 2rem 0;
+  }
+
+  .type-scale-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .type-scale-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    min-width: 80px;
+    flex-shrink: 0;
+  }
+
+  .type-scale-size {
+    font-size: 0.7rem;
+    color: var(--teal-deep);
+    font-weight: 600;
+    min-width: 48px;
+    flex-shrink: 0;
+  }
+
+  /* ===== SPACING & LAYOUT ===== */
+  .spacing-demo {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+    align-items: flex-end;
+  }
+
+  .spacing-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .spacing-visual {
+    background: var(--teal-deep-20);
+    border: 2px dashed var(--teal-deep);
+    border-radius: 4px;
+    width: 48px;
+  }
+
+  .spacing-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  /* ===== MOBILE FIRST LAYOUT ===== */
+  .layout-container {
+    margin: 2rem 0;
+  }
+
+  .mobile-frame {
+    background: var(--dark);
+    border-radius: 32px;
+    padding: 12px;
+    max-width: 320px;
+    margin: 0 auto 2rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+
+  .mobile-screen {
+    background: var(--sand-light);
+    border-radius: 22px;
+    overflow: hidden;
+    padding: 1.25rem;
+    min-height: 520px;
+  }
+
+  .mock-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    margin-bottom: 1rem;
+  }
+
+  .mock-logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--dark);
+  }
+
+  .mock-burger {
+    width: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .mock-burger span {
+    height: 2px;
+    background: var(--dark);
+    border-radius: 2px;
+  }
+
+  .mock-hero-img {
+    width: 100%;
+    height: 160px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--teal-deep), var(--green-fresh));
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+  }
+
+  .mock-eyebrow {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal-mid);
+    margin-bottom: 0.35rem;
+  }
+
+  .mock-heading {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .mock-body {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .mock-btn {
+    display: inline-flex;
+    padding: 0.65rem 1.5rem;
+    background: var(--teal-deep);
+    color: white;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .mock-btn-outline {
+    display: inline-flex;
+    padding: 0.6rem 1.25rem;
+    background: transparent;
+    color: var(--teal-deep);
+    border: 1.5px solid var(--teal-deep);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+  }
+
+  .mock-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  .mock-card {
+    background: var(--white);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    border: 1px solid #e6e1d6;
+  }
+
+  .mock-card-title {
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.25rem;
+  }
+
+  .mock-card-desc {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ===== COMPONENT EXAMPLES ===== */
+  .component-gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 600px) {
+    .component-gallery { grid-template-columns: 1fr 1fr; }
+  }
+
+  .component-example {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    border: 1px solid #e6e1d6;
+    overflow: hidden;
+  }
+
+  .component-preview {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+  }
+
+  .component-label {
+    padding: 0.75rem 1rem;
+    background: #f5f3ee;
+    border-top: 1px solid #e6e1d6;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ===== BUTTON EXAMPLES ===== */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: var(--teal-deep);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(4, 188, 172, 0.25);
+  }
+
+  .btn-primary:hover {
+    background: #039d90;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(4, 188, 172, 0.35);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.75rem;
+    background: transparent;
+    color: var(--teal-deep);
+    border: 2px solid var(--teal-deep);
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    background: var(--teal-deep-10);
+    transform: translateY(-1px);
+  }
+
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 2rem;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+  }
+
+  /* ===== SERVICE CARD ===== */
+  .demo-service-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    width: 100%;
+    max-width: 280px;
+    border: 1px solid #e6e1d6;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .demo-service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(4, 188, 172, 0.1);
+  }
+
+  .demo-service-img {
+    height: 140px;
+    background: linear-gradient(135deg, var(--teal-deep), var(--green-fresh));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+  }
+
+  .demo-service-body {
+    padding: 1.25rem;
+  }
+
+  .demo-service-body h4 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.4rem;
+  }
+
+  .demo-service-body p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .demo-service-cta {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--teal-deep);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  /* ===== ICON STYLE ===== */
+  .icon-examples {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+  }
+
+  .icon-example {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .icon-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .icon-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  /* ===== IMAGE TREATMENT ===== */
+  .image-treatments {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 600px) {
+    .image-treatments { grid-template-columns: 1fr 1fr 1fr; }
+  }
+
+  .img-treatment {
+    aspect-ratio: 1;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--teal-mid), var(--green-lime));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .img-treatment-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    text-align: center;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: white;
+  }
+
+  .img-round { border-radius: 50%; }
+  .img-torn {
+    border-radius: var(--radius-md);
+    clip-path: polygon(0% 5%, 3% 0%, 7% 4%, 12% 1%, 18% 3%, 24% 0%, 30% 4%, 35% 1%, 42% 3%, 48% 0%, 55% 5%, 60% 1%, 67% 3%, 73% 0%, 80% 4%, 86% 1%, 92% 3%, 97% 0%, 100% 5%, 100% 95%, 97% 100%, 92% 97%, 86% 100%, 80% 96%, 73% 100%, 67% 97%, 60% 100%, 55% 95%, 48% 100%, 42% 97%, 35% 100%, 30% 96%, 24% 100%, 18% 97%, 12% 100%, 7% 96%, 3% 100%, 0% 95%);
+  }
+
+  /* ===== REFERENCE IMAGES ===== */
+  .ref-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 600px) {
+    .ref-grid { grid-template-columns: 1fr 1fr 1fr 1fr; }
+  }
+
+  .ref-item {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid #e6e1d6;
+    background: var(--white);
+  }
+
+  .ref-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+
+  .ref-item-caption {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  /* ===== DO/DON'T ===== */
+  .do-dont-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  @media (min-width: 600px) {
+    .do-dont-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .do-item, .dont-item {
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    border: 1px solid;
+  }
+
+  .do-item {
+    background: #f0faf5;
+    border-color: #b5e8cd;
+  }
+
+  .dont-item {
+    background: #fdf4f3;
+    border-color: #e8c5c0;
+  }
+
+  .do-dont-tag {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .do-item .do-dont-tag { color: #2d9e63; }
+  .dont-item .do-dont-tag { color: #c0453e; }
+
+  .do-item ul, .dont-item ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .do-item li, .dont-item li {
+    font-size: 0.85rem;
+    padding: 0.3rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-body);
+    line-height: 1.5;
+  }
+
+  .do-item li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #2d9e63;
+    font-weight: 700;
+  }
+
+  .dont-item li::before {
+    content: '✗';
+    position: absolute;
+    left: 0;
+    color: #c0453e;
+    font-weight: 700;
+  }
+
+  /* ===== BREAKPOINTS TABLE ===== */
+  .specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.85rem;
+  }
+
+  .specs-table th {
+    text-align: left;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0.75rem;
+    border-bottom: 2px solid #d6d0c4;
+  }
+
+  .specs-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #eee;
+    color: var(--text-body);
+  }
+
+  .specs-table tr:last-child td { border-bottom: none; }
+
+  .specs-table code {
+    background: var(--teal-deep-10);
+    color: var(--teal-deep);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  /* ===== HELPERS ===== */
+  .callout {
+    background: var(--teal-deep-10);
+    border-left: 4px solid var(--teal-deep);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .callout p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: var(--dark-soft);
+  }
+
+  .callout strong { color: var(--teal-deep); }
+
+  .note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 1rem 0;
+  }
+
+  .handwritten-note {
+    font-family: var(--font-handwritten);
+    font-size: 1.3rem;
+    color: var(--teal-deep);
+    margin: 1.5rem 0;
+  }
+
+  /* ===== DARK SECTION VARIANT ===== */
+  .section-dark {
+    background: var(--dark);
+    margin: 0;
+    max-width: none;
+    padding: 4rem 1.5rem;
+  }
+
+  .section-dark .section-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-dark .section-label { color: var(--lime-bright); }
+  .section-dark .section-label::before { background: var(--lime-bright); }
+  .section-dark h2 { color: var(--white); }
+  .section-dark h3 { color: var(--sand-light); }
+  .section-dark p { color: #a0b8b2; }
+  .section-dark .section-intro { color: #7d9e95; }
+
+  /* ===== PRINT ===== */
+  @media print {
+    .cover { min-height: auto; padding: 3rem; break-after: page; }
+    .section { break-inside: avoid; }
+    .palette-strip .swatch span { opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== COVER ==================== -->
+<div class="cover">
+  <div class="cover-badge">Visual Style Guide — v1.0</div>
+  <h1>Jumani <em>Surf School</em></h1>
+  <div class="cover-sub">Learn to Surf. Relax Your Soul.</div>
+  <div class="cover-meta">Dewata Beach, Galle, Sri Lanka &nbsp;·&nbsp; Mobile-First Website Design System</div>
+  <div class="cover-gradient-bar"></div>
+</div>
+
+<!-- ==================== TABLE OF CONTENTS ==================== -->
+<div class="toc">
+  <h2>Contents</h2>
+  <ol class="toc-list">
+    <li><a href="#principles">Design Principles</a></li>
+    <li><a href="#palette">Color Palette</a></li>
+    <li><a href="#typography">Typography</a></li>
+    <li><a href="#layout">Mobile-First Layout</a></li>
+    <li><a href="#components">Component Patterns</a></li>
+    <li><a href="#imagery">Imagery &amp; Media</a></li>
+    <li><a href="#mood">Visual References &amp; Mood</a></li>
+    <li><a href="#dos-donts">Do's &amp; Don'ts</a></li>
+    <li><a href="#specs">Technical Specifications</a></li>
+  </ol>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ==================== 1. DESIGN PRINCIPLES ==================== -->
+<div class="section" id="principles">
+  <div class="section-label">01 — Foundation</div>
+  <h2>Design Principles</h2>
+  <p class="section-intro">
+    The Jumani website should feel like the experience itself: warm, inviting, sun-soaked, and personal. 
+    Every visual decision should reflect a small, authentic surf school — not a corporate resort brand.
+  </p>
+
+  <div class="principles-grid">
+    <div class="principle-card">
+      <div class="num">01</div>
+      <h4>Mobile First, Always</h4>
+      <p>Most visitors discover Jumani on their phone while traveling. Design every component for a 375px viewport first, then scale up. The booking CTA must always be one tap away.</p>
+    </div>
+    <div class="principle-card">
+      <div class="num">02</div>
+      <h4>Warm & Personal</h4>
+      <p>Avoid cold, corporate design patterns. Use rounded corners, organic shapes, handwritten accents, and warm tones. The site should feel like a friendly postcard, not a hotel chain.</p>
+    </div>
+    <div class="principle-card">
+      <div class="num">03</div>
+      <h4>Fresh & Tropical</h4>
+      <p>The teal-to-yellow gradient palette evokes ocean-to-sunset energy. Colors should feel vibrant and alive, like tropical fruit and turquoise water — never dark or heavy.</p>
+    </div>
+    <div class="principle-card">
+      <div class="num">04</div>
+      <h4>Effortless Clarity</h4>
+      <p>Visitors should understand what Jumani offers within 3 seconds. Three services — surf lessons, board rentals, smoothie bar — must be visible immediately, with clear CTAs.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ==================== 2. COLOR PALETTE ==================== -->
+<div class="section" id="palette">
+  <div class="section-label">02 — Color</div>
+  <h2>Color Palette</h2>
+  <p class="section-intro">
+    A fresh gradient from deep ocean teal to sun-glow yellow. The palette captures the full arc of a surf day — 
+    morning water to golden hour.
+  </p>
+
+  <div class="palette-strip">
+    <div class="swatch" style="background:#04bcac"><span style="color:#fff">#04bcac</span></div>
+    <div class="swatch" style="background:#42cca3"><span style="color:#fff">#42cca3</span></div>
+    <div class="swatch" style="background:#6eda96"><span style="color:#1a3330">#6eda96</span></div>
+    <div class="swatch" style="background:#9ae687"><span style="color:#1a3330">#9ae687</span></div>
+    <div class="swatch" style="background:#c8f17a"><span style="color:#1a3330">#c8f17a</span></div>
+    <div class="swatch" style="background:#f9f871"><span style="color:#1a3330">#f9f871</span></div>
+  </div>
+
+  <h3>Primary Colors</h3>
+  <div class="color-cards">
+    <div class="color-card">
+      <div class="color-card-swatch" style="background:#04bcac"></div>
+      <div class="color-card-info"><div class="name">Ocean Teal</div><div class="hex">#04bcac</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card-swatch" style="background:#42cca3"></div>
+      <div class="color-card-info"><div class="name">Reef Green</div><div class="hex">#42cca3</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card-swatch" style="background:#6eda96"></div>
+      <div class="color-card-info"><div class="name">Tropical</div><div class="hex">#6eda96</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card-swatch" style="background:#9ae687"></div>
+      <div class="color-card-info"><div class="name">Palm Green</div><div class="hex">#9ae687</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card-swatch" style="background:#c8f17a"></div>
+      <div class="color-card-info"><div class="name">Lime Glow</div><div class="hex">#c8f17a</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card-swatch" style="background:#f9f871"></div>
+      <div class="color-card-info"><div class="name">Sun Yellow</div><div class="hex">#f9f871</div></div>
+    </div>
+  </div>
+
+  <h3>Neutral &amp; Supporting Colors</h3>
+  <div class="color-cards">
+    <div class="color-card">
+      <div class="color-card-swatch" style="background:#0a1f1c"></div>
+      <div class="color-card-info"><div class="name">Deep Dark</div><div class="hex">#0a1f1c</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card-swatch" style="background:#1a3330"></div>
+      <div class="color-card-info"><div class="name">Dark Teal</div><div class="hex">#1a3330</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card-swatch" style="background:#2c3e3a"></div>
+      <div class="color-card-info"><div class="name">Body Text</div><div class="hex">#2c3e3a</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card-swatch" style="background:#5a7a72"></div>
+      <div class="color-card-info"><div class="name">Muted Text</div><div class="hex">#5a7a72</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card-swatch" style="background:#f8f6f0"></div>
+      <div class="color-card-info"><div class="name">Sand Light</div><div class="hex">#f8f6f0</div></div>
+    </div>
+    <div class="color-card">
+      <div class="color-card-swatch" style="background:#ede8dc"></div>
+      <div class="color-card-info"><div class="name">Sand Warm</div><div class="hex">#ede8dc</div></div>
+    </div>
+  </div>
+
+  <h3>Color Usage</h3>
+  <div class="color-usage-grid">
+    <div class="color-usage-item">
+      <div class="color-usage-dot" style="background:#04bcac"></div>
+      <div class="color-usage-text">
+        <h4>Primary Actions</h4>
+        <p>CTA buttons, links, active states, "Book Now" — Ocean Teal is the primary action color.</p>
+      </div>
+    </div>
+    <div class="color-usage-item">
+      <div class="color-usage-dot" style="background:#c8f17a"></div>
+      <div class="color-usage-text">
+        <h4>Accents &amp; Highlights</h4>
+        <p>Tags, badges ("Most Popular"), decorative elements, hover glows. Use Lime Glow sparingly for energy.</p>
+      </div>
+    </div>
+    <div class="color-usage-item">
+      <div class="color-usage-dot" style="background:linear-gradient(135deg, #04bcac, #f9f871)"></div>
+      <div class="color-usage-text">
+        <h4>Gradient Backgrounds</h4>
+        <p>Hero overlays, CTA banners, decorative strips. Use the full gradient for high-impact sections only.</p>
+      </div>
+    </div>
+    <div class="color-usage-item">
+      <div class="color-usage-dot" style="background:#f8f6f0; border: 1px solid #d6d0c4"></div>
+      <div class="color-usage-text">
+        <h4>Backgrounds</h4>
+        <p>Sand Light (#f8f6f0) for page backgrounds. White (#fff) for cards. Avoid pure grey backgrounds.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Gradient Examples</h3>
+  <div class="gradient-samples">
+    <div class="gradient-sample" style="background: linear-gradient(135deg, #04bcac, #6eda96)">
+      <span>Hero Overlay</span>
+    </div>
+    <div class="gradient-sample" style="background: linear-gradient(135deg, #42cca3, #c8f17a)">
+      <span>CTA Banner</span>
+    </div>
+    <div class="gradient-sample" style="background: linear-gradient(160deg, #0a1f1c, #1a3330 60%, #04bcac)">
+      <span>Dark Section</span>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Contrast rule:</strong> Always ensure WCAG AA contrast on text. Use dark tones (#0a1f1c, #1a3330, #2c3e3a) for text on light backgrounds. Use white for text on colored backgrounds. Never place text on the lighter greens/yellows without a dark overlay.</p>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ==================== 3. TYPOGRAPHY ==================== -->
+<div class="section" id="typography">
+  <div class="section-label">03 — Typography</div>
+  <h2>Typography</h2>
+  <p class="section-intro">
+    A three-font system: a refined serif for headings, a clean sans-serif for body, and a handwritten script 
+    for personality and warmth.
+  </p>
+
+  <div class="type-showcase">
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="type-tag">Display / Headlines</span>
+        <span class="type-tag">Playfair Display</span>
+      </div>
+      <div class="type-sample-display">Learn to Surf.<br>Relax Your Soul.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="type-tag">Body / UI</span>
+        <span class="type-tag">DM Sans</span>
+      </div>
+      <div class="type-sample-body">ISA-certified surf lessons for all levels, surfboard rentals, and a beachside smoothie bar on Dewata Beach, Galle. Private & group lessons, free transfer service. Book now!</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">
+        <span class="type-tag">Handwritten Accent</span>
+        <span class="type-tag">Caveat</span>
+      </div>
+      <div class="type-sample-handwritten">Surf, sip, and watch the sunset — all in one place</div>
+    </div>
+  </div>
+
+  <h3>Type Scale (Mobile)</h3>
+  <p>Sizes are set for the 375px base viewport and scale up with <code>clamp()</code> for larger screens.</p>
+
+  <div class="type-scale">
+    <div class="type-scale-row">
+      <span class="type-scale-label">Hero H1</span>
+      <span class="type-scale-size">36–56px</span>
+      <span style="font-family:var(--font-display); font-size:2rem; font-weight:700; color:var(--dark);">Learn to Surf</span>
+    </div>
+    <div class="type-scale-row">
+      <span class="type-scale-label">Section H2</span>
+      <span class="type-scale-size">28–40px</span>
+      <span style="font-family:var(--font-display); font-size:1.5rem; font-weight:700; color:var(--dark);">Why Jumani?</span>
+    </div>
+    <div class="type-scale-row">
+      <span class="type-scale-label">Card H3</span>
+      <span class="type-scale-size">20–24px</span>
+      <span style="font-family:var(--font-display); font-size:1.15rem; font-weight:700; color:var(--dark);">Surf Lessons</span>
+    </div>
+    <div class="type-scale-row">
+      <span class="type-scale-label">Body</span>
+      <span class="type-scale-size">16px</span>
+      <span style="font-family:var(--font-body); font-size:1rem; color:var(--text-body);">Quality boards for every level.</span>
+    </div>
+    <div class="type-scale-row">
+      <span class="type-scale-label">Small / Meta</span>
+      <span class="type-scale-size">13–14px</span>
+      <span style="font-family:var(--font-body); font-size:0.85rem; color:var(--text-muted);">Dewata Beach, Galle, Sri Lanka</span>
+    </div>
+    <div class="type-scale-row">
+      <span class="type-scale-label">Eyebrow</span>
+      <span class="type-scale-size">11–12px</span>
+      <span style="font-family:var(--font-body); font-size:0.7rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--teal-deep);">Our Story</span>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Handwritten font usage:</strong> Use Caveat sparingly — for taglines, personal quotes, annotations, or short accent phrases. Never for body text or navigation. It conveys the personal, family-run spirit of Jumani.</p>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ==================== 4. MOBILE-FIRST LAYOUT ==================== -->
+<div class="section" id="layout">
+  <div class="section-label">04 — Layout</div>
+  <h2>Mobile-First Layout</h2>
+  <p class="section-intro">
+    Design for the traveler's phone first. Every section stacks vertically on mobile, with generous touch targets 
+    and a sticky header that always shows the "Book Now" CTA.
+  </p>
+
+  <div class="layout-container">
+    <div class="mobile-frame">
+      <div class="mobile-screen">
+        <div class="mock-header">
+          <div class="mock-logo">Jumani</div>
+          <div style="display:flex; gap: 0.75rem; align-items:center;">
+            <span class="mock-btn" style="padding:0.45rem 0.9rem; font-size:0.65rem;">Book Now</span>
+            <div class="mock-burger"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+        <div class="mock-hero-img">🏄</div>
+        <div class="mock-eyebrow">Dewata Beach, Galle</div>
+        <div class="mock-heading">Learn to Surf. Relax Your Soul.</div>
+        <div class="mock-body">ISA-certified surf lessons, board rentals, and a smoothie bar on one of Sri Lanka's most beautiful beaches.</div>
+        <div>
+          <span class="mock-btn">Book a Lesson</span>
+          <span class="mock-btn-outline">Explore</span>
+        </div>
+        <div class="mock-cards">
+          <div class="mock-card">
+            <div class="mock-card-title">🏄 Surf Lessons</div>
+            <div class="mock-card-desc">ISA-certified instruction for all levels</div>
+          </div>
+          <div class="mock-card">
+            <div class="mock-card-title">🏄‍♀️ Board Rentals</div>
+            <div class="mock-card-desc">Quality boards for independent surfing</div>
+          </div>
+          <div class="mock-card">
+            <div class="mock-card-title">🥤 Smoothie Bar</div>
+            <div class="mock-card-desc">Fresh juices, coffee, and Sri Lankan bites</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Layout Rules</h3>
+
+  <div class="callout">
+    <p><strong>Sticky header:</strong> On mobile, the header includes a compact logo, "Book Now" CTA button (always visible, teal background), and hamburger menu. The header becomes sticky on scroll and should have a subtle backdrop blur.</p>
+  </div>
+
+  <table class="specs-table">
+    <thead>
+      <tr><th>Property</th><th>Mobile</th><th>Tablet+</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Container max-width</td><td>100%</td><td><code>1200px</code></td></tr>
+      <tr><td>Side padding</td><td><code>1rem</code> (16px)</td><td><code>2rem</code> → <code>4rem</code></td></tr>
+      <tr><td>Section spacing</td><td><code>3rem</code> (48px)</td><td><code>5rem</code> → <code>6rem</code></td></tr>
+      <tr><td>Card layout</td><td>Full-width stack</td><td>2–3 column grid</td></tr>
+      <tr><td>Hero height</td><td><code>85vh</code> min</td><td><code>90vh</code></td></tr>
+      <tr><td>Service cards</td><td>Vertical stack</td><td>3-column row</td></tr>
+      <tr><td>Nav style</td><td>Hamburger + sticky CTA</td><td>Inline links + CTA button</td></tr>
+      <tr><td>Footer</td><td>Stacked sections</td><td>4-column grid</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Spacing Scale</h3>
+  <div class="spacing-demo">
+    <div class="spacing-block">
+      <div class="spacing-visual" style="height:4px;"></div>
+      <div class="spacing-label">4px<br><small>xs</small></div>
+    </div>
+    <div class="spacing-block">
+      <div class="spacing-visual" style="height:8px;"></div>
+      <div class="spacing-label">8px<br><small>sm</small></div>
+    </div>
+    <div class="spacing-block">
+      <div class="spacing-visual" style="height:16px;"></div>
+      <div class="spacing-label">16px<br><small>md</small></div>
+    </div>
+    <div class="spacing-block">
+      <div class="spacing-visual" style="height:24px;"></div>
+      <div class="spacing-label">24px<br><small>lg</small></div>
+    </div>
+    <div class="spacing-block">
+      <div class="spacing-visual" style="height:32px;"></div>
+      <div class="spacing-label">32px<br><small>xl</small></div>
+    </div>
+    <div class="spacing-block">
+      <div class="spacing-visual" style="height:48px;"></div>
+      <div class="spacing-label">48px<br><small>2xl</small></div>
+    </div>
+    <div class="spacing-block">
+      <div class="spacing-visual" style="height:64px;"></div>
+      <div class="spacing-label">64px<br><small>3xl</small></div>
+    </div>
+    <div class="spacing-block">
+      <div class="spacing-visual" style="height:96px;"></div>
+      <div class="spacing-label">96px<br><small>4xl</small></div>
+    </div>
+  </div>
+
+  <h3>Border Radius</h3>
+  <p>Use consistent, generous rounding for a warm, approachable feel. Avoid sharp corners except for very small inline elements like badges.</p>
+
+  <table class="specs-table">
+    <thead>
+      <tr><th>Token</th><th>Value</th><th>Usage</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>radius-sm</code></td><td>8px</td><td>Small cards, input fields, badges</td></tr>
+      <tr><td><code>radius-md</code></td><td>16px</td><td>Cards, images, modals</td></tr>
+      <tr><td><code>radius-lg</code></td><td>24px</td><td>Hero images, featured sections</td></tr>
+      <tr><td><code>radius-xl</code></td><td>32px</td><td>Large container panels</td></tr>
+      <tr><td><code>radius-pill</code></td><td>999px</td><td>Buttons, tags, pills</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ==================== 5. COMPONENT PATTERNS ==================== -->
+<div class="section" id="components">
+  <div class="section-label">05 — Components</div>
+  <h2>Component Patterns</h2>
+  <p class="section-intro">
+    Core UI components designed for mobile-first interaction. All buttons use pill shapes for warmth. 
+    Cards are white with soft borders on the sand-colored background.
+  </p>
+
+  <h3>Buttons</h3>
+  <div class="component-gallery">
+    <div class="component-example">
+      <div class="component-preview">
+        <button class="btn-primary">Book a Lesson →</button>
+      </div>
+      <div class="component-label">Primary CTA — Ocean Teal, pill, shadow</div>
+    </div>
+    <div class="component-example">
+      <div class="component-preview">
+        <button class="btn-secondary">View Lessons</button>
+      </div>
+      <div class="component-label">Secondary — Outlined, teal border</div>
+    </div>
+    <div class="component-example">
+      <div class="component-preview">
+        <button class="btn-whatsapp">💬 WhatsApp Us</button>
+      </div>
+      <div class="component-label">WhatsApp — Green, always with icon</div>
+    </div>
+    <div class="component-example">
+      <div class="component-preview" style="background:var(--dark);">
+        <button class="btn-primary" style="background:var(--lime-bright); color:var(--dark);">Book Now</button>
+      </div>
+      <div class="component-label">CTA on dark — Lime Glow, dark text</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Touch targets:</strong> All buttons must have a minimum height of 48px on mobile. CTA buttons should be full-width on mobile viewports below 480px.</p>
+  </div>
+
+  <h3>Service Card</h3>
+  <div class="component-gallery">
+    <div class="component-example" style="grid-column: 1 / -1;">
+      <div class="component-preview">
+        <div class="demo-service-card">
+          <div class="demo-service-img">🏄</div>
+          <div class="demo-service-body">
+            <h4>Surf Lessons</h4>
+            <p>From your first wave to advanced maneuvers. ISA-certified instruction for all levels.</p>
+            <a href="#" class="demo-service-cta">View Lessons →</a>
+          </div>
+        </div>
+      </div>
+      <div class="component-label">Service card — rounded image, serif heading, body text, text CTA link</div>
+    </div>
+  </div>
+
+  <h3>Icon Style</h3>
+  <p>Use line-weight icons (like Lucide or Phosphor) for features. Display them in tinted circles using palette colors at 10–15% opacity.</p>
+
+  <div class="icon-examples">
+    <div class="icon-example">
+      <div class="icon-circle" style="background:#04bcac1a; color:#04bcac;">🛡️</div>
+      <div class="icon-label">ISA Certified</div>
+    </div>
+    <div class="icon-example">
+      <div class="icon-circle" style="background:#6eda961a; color:#1a3330;">📍</div>
+      <div class="icon-label">Private Beach</div>
+    </div>
+    <div class="icon-example">
+      <div class="icon-circle" style="background:#c8f17a33; color:#1a3330;">🌊</div>
+      <div class="icon-label">All Levels</div>
+    </div>
+    <div class="icon-example">
+      <div class="icon-circle" style="background:#f9f87133; color:#1a3330;">🚐</div>
+      <div class="icon-label">Transfer</div>
+    </div>
+    <div class="icon-example">
+      <div class="icon-circle" style="background:#9ae6871a; color:#1a3330;">🌅</div>
+      <div class="icon-label">Sunsets</div>
+    </div>
+    <div class="icon-example">
+      <div class="icon-circle" style="background:#42cca31a; color:#1a3330;">🥤</div>
+      <div class="icon-label">Surf & Chill</div>
+    </div>
+  </div>
+  <p class="note">Emoji shown as placeholders — use consistent line-style SVG icons from a single icon library in production.</p>
+
+  <h3>Testimonial Style</h3>
+  <p>Quote cards use the handwritten font for the quotation mark, the body font for the quote text, and an italic attribution line. Consider a subtle teal left border or a torn-paper edge effect inspired by the visual references.</p>
+
+  <h3>Section Eyebrow Pattern</h3>
+  <p>Every content section starts with a small uppercase eyebrow label above the heading. This creates visual rhythm and helps scanners orient quickly. Format: all caps, 11–12px, bold weight, teal color, with an optional short line before it.</p>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ==================== 6. IMAGERY ==================== -->
+<div class="section" id="imagery">
+  <div class="section-label">06 — Imagery</div>
+  <h2>Imagery &amp; Media</h2>
+  <p class="section-intro">
+    Photography is the soul of the Jumani website. Use real, warm-toned photos — never stock photography that 
+    feels generic. The visual references show a collage-like, layered approach to photo composition.
+  </p>
+
+  <h3>Image Treatments</h3>
+  <div class="image-treatments">
+    <div class="img-treatment" style="border-radius:16px;">
+      <span>🏄</span>
+      <div class="img-treatment-label">Rounded Corners (default)</div>
+    </div>
+    <div class="img-treatment img-round">
+      <span>👤</span>
+      <div class="img-treatment-label">Circle (Team photos)</div>
+    </div>
+    <div class="img-treatment img-torn">
+      <span>🌴</span>
+      <div class="img-treatment-label">Torn Edge (Accent)</div>
+    </div>
+  </div>
+
+  <h3>Photo Direction</h3>
+  <div class="color-usage-grid">
+    <div class="color-usage-item">
+      <div class="color-usage-dot" style="background:linear-gradient(135deg, #f9c858, #e88a2a); font-size:1.2rem; display:flex; align-items:center; justify-content:center; color:white;">☀️</div>
+      <div class="color-usage-text">
+        <h4>Golden Hour Priority</h4>
+        <p>Prefer sunset and golden hour shots. The warm light reinforces the brand palette and emotional tone.</p>
+      </div>
+    </div>
+    <div class="color-usage-item">
+      <div class="color-usage-dot" style="background:linear-gradient(135deg, #04bcac, #42cca3); display:flex; align-items:center; justify-content:center; color:white; font-size:1.2rem;">🏄</div>
+      <div class="color-usage-text">
+        <h4>Action &amp; Lifestyle</h4>
+        <p>Mix surf action (lessons, waves, boards) with lifestyle (bar, drinks, relaxing, community). Show real people.</p>
+      </div>
+    </div>
+    <div class="color-usage-item">
+      <div class="color-usage-dot" style="background:var(--sand-warm); border: 1px solid #d6d0c4; display:flex; align-items:center; justify-content:center; font-size:1.2rem;">🤏</div>
+      <div class="color-usage-text">
+        <h4>Intimate Scale</h4>
+        <p>Photos should feel personal and close — small groups, individual moments, close-up textures. Not wide resort panoramas.</p>
+      </div>
+    </div>
+    <div class="color-usage-item">
+      <div class="color-usage-dot" style="background:linear-gradient(135deg, #6eda96, #c8f17a); display:flex; align-items:center; justify-content:center; font-size:1.2rem;">🎨</div>
+      <div class="color-usage-text">
+        <h4>Layered Composition</h4>
+        <p>Inspired by the visual references: overlap images, use torn paper edges, tilted frames, and collage-style gallery layouts.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Hero Images</h3>
+  <p>Hero sections use full-width images with a dark gradient overlay (from bottom) for text legibility. The overlay fades from transparent at top to 60–70% dark at bottom where the heading sits. Keep the focus of the photo in the upper 60% of the frame to avoid text overlap with the main subject.</p>
+
+  <h3>Gallery Layout</h3>
+  <p>Use a masonry or asymmetric grid for gallery sections — inspired by the collage aesthetic in the visual references. Mix image sizes (some full-width, some half-width, occasional polaroid-style with a white border and slight rotation).</p>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ==================== 7. VISUAL REFERENCES ==================== -->
+<div class="section-dark" id="mood">
+  <div class="section-inner">
+    <div class="section-label">07 — Mood</div>
+    <h2>Visual References &amp; Mood</h2>
+    <p class="section-intro">
+      Key patterns extracted from the provided visual references. These inform the overall feel and creative direction.
+    </p>
+
+    <h3>Reference Takeaways</h3>
+    <div class="principles-grid" style="margin-top:1.5rem;">
+      <div class="principle-card" style="background:var(--dark-soft); border-color:#2a4a44;">
+        <div class="num" style="color:var(--lime-bright);">A</div>
+        <h4 style="color:var(--sand-light);">Torn Paper &amp; Texture</h4>
+        <p style="color:#7d9e95;">Ref 1 (camping page) uses torn paper edge dividers and textured backgrounds. Apply this as optional decorative dividers between sections, but keep it subtle — a nod, not a theme.</p>
+      </div>
+      <div class="principle-card" style="background:var(--dark-soft); border-color:#2a4a44;">
+        <div class="num" style="color:var(--lime-bright);">B</div>
+        <h4 style="color:var(--sand-light);">Playful Typography Mix</h4>
+        <p style="color:#7d9e95;">Refs 1–3 use bold display type alongside handwritten/script fonts. Adopt this dual-font approach: Playfair Display for structure, Caveat for warmth.</p>
+      </div>
+      <div class="principle-card" style="background:var(--dark-soft); border-color:#2a4a44;">
+        <div class="num" style="color:var(--lime-bright);">C</div>
+        <h4 style="color:var(--sand-light);">Soft, Rounded Mobile Cards</h4>
+        <p style="color:#7d9e95;">Refs 2–3 (animal farm, tour agency) use rounded cards with green/natural tones on mobile-width layouts. These directly inform our service card and nav patterns.</p>
+      </div>
+      <div class="principle-card" style="background:var(--dark-soft); border-color:#2a4a44;">
+        <div class="num" style="color:var(--lime-bright);">D</div>
+        <h4 style="color:var(--sand-light);">Warm, Nature-Forward Palette</h4>
+        <p style="color:#7d9e95;">Ref 4 (wellness retreat) demonstrates green/sage/cream used elegantly with layered photos and serif type. This is the sophistication target for Jumani's premium feel.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem; padding:1.5rem; background:var(--dark); border-radius:var(--radius-md); border:1px solid #2a4a44;">
+      <p style="color:#7d9e95; font-size:0.85rem; margin:0;"><strong style="color:var(--lime-bright);">Design sweet spot:</strong> The Jumani website lives between the playful collage energy of references 1–3 and the refined elegance of reference 4. It should feel crafted and personal (not a template), but also clean and easy to navigate on a phone.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ==================== 8. DO'S & DON'TS ==================== -->
+<div class="section" id="dos-donts">
+  <div class="section-label">08 — Guidelines</div>
+  <h2>Do's &amp; Don'ts</h2>
+
+  <div class="do-dont-grid">
+    <div class="do-item">
+      <div class="do-dont-tag">✓ Do</div>
+      <ul>
+        <li>Use the full teal-to-yellow gradient for hero/CTA backgrounds</li>
+        <li>Round all corners generously (16px+ for cards)</li>
+        <li>Use the handwritten font for short, warm accent phrases</li>
+        <li>Show real photos of Mani, Fasil, the beach, and the bar</li>
+        <li>Make "Book Now" the most prominent element on every page</li>
+        <li>Add micro-interactions on button hover (lift + shadow)</li>
+        <li>Use Sand Light (#f8f6f0) as the page background — warmer than pure white</li>
+        <li>Overlap elements slightly for depth (images over sections, badges over cards)</li>
+      </ul>
+    </div>
+    <div class="dont-item">
+      <div class="do-dont-tag">✗ Don't</div>
+      <ul>
+        <li>Use sharp/square corners — this isn't a corporate or tech brand</li>
+        <li>Use generic stock photography or AI-generated images</li>
+        <li>Use the lighter greens/yellows as text colors (contrast fails)</li>
+        <li>Overload the handwritten font — it's an accent, not a workhorse</li>
+        <li>Use a pure white (#fff) page background — too clinical</li>
+        <li>Create complex navigation — keep it simple and flat</li>
+        <li>Design desktop-first and shrink down — start at 375px</li>
+        <li>Use dark/moody color schemes — the brand is sun, sea, and smiles</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ==================== 9. TECHNICAL SPECS ==================== -->
+<div class="section" id="specs">
+  <div class="section-label">09 — Technical</div>
+  <h2>Technical Specifications</h2>
+
+  <h3>Breakpoints</h3>
+  <table class="specs-table">
+    <thead>
+      <tr><th>Name</th><th>Min Width</th><th>Layout Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Mobile (base)</td><td><code>0px</code></td><td>Single column, stacked cards, hamburger nav, full-width CTAs</td></tr>
+      <tr><td>Mobile Large</td><td><code>480px</code></td><td>2-column service cards, buttons auto-width</td></tr>
+      <tr><td>Tablet</td><td><code>768px</code></td><td>Inline nav, 2–3 column grids, split hero layouts</td></tr>
+      <tr><td>Desktop</td><td><code>1024px</code></td><td>Full nav, 3-column grids, side-by-side sections</td></tr>
+      <tr><td>Wide</td><td><code>1280px</code></td><td>Max container width (1200px), generous whitespace</td></tr>
+    </tbody>
+  </table>
+
+  <h3>CSS Variables (Copy-Paste Ready)</h3>
+  <div style="background:var(--dark); border-radius:var(--radius-md); padding:1.5rem; margin:1.5rem 0; overflow-x:auto;">
+    <pre style="color:#a0b8b2; font-size:0.75rem; line-height:1.8; margin:0; font-family:'DM Mono', monospace; white-space:pre-wrap;"><span style="color:var(--teal-mid);">:root</span> {
+  <span style="color:var(--lime-bright);">/* Brand Palette */</span>
+  --color-teal-deep:   <span style="color:#f9f871;">#04bcac</span>;
+  --color-teal-mid:    <span style="color:#f9f871;">#42cca3</span>;
+  --color-green-fresh: <span style="color:#f9f871;">#6eda96</span>;
+  --color-green-lime:  <span style="color:#f9f871;">#9ae687</span>;
+  --color-lime-bright: <span style="color:#f9f871;">#c8f17a</span>;
+  --color-yellow-glow: <span style="color:#f9f871;">#f9f871</span>;
+
+  <span style="color:var(--lime-bright);">/* Neutrals */</span>
+  --color-dark:        <span style="color:#f9f871;">#0a1f1c</span>;
+  --color-dark-soft:   <span style="color:#f9f871;">#1a3330</span>;
+  --color-text:        <span style="color:#f9f871;">#2c3e3a</span>;
+  --color-text-muted:  <span style="color:#f9f871;">#5a7a72</span>;
+  --color-sand:        <span style="color:#f9f871;">#f8f6f0</span>;
+  --color-sand-warm:   <span style="color:#f9f871;">#ede8dc</span>;
+  --color-white:       <span style="color:#f9f871;">#ffffff</span>;
+
+  <span style="color:var(--lime-bright);">/* Typography */</span>
+  --font-display:      'Playfair Display', Georgia, serif;
+  --font-body:         'DM Sans', -apple-system, sans-serif;
+  --font-handwritten:  'Caveat', cursive;
+
+  <span style="color:var(--lime-bright);">/* Spacing */</span>
+  --space-xs: 4px;   --space-sm: 8px;
+  --space-md: 16px;  --space-lg: 24px;
+  --space-xl: 32px;  --space-2xl: 48px;
+  --space-3xl: 64px; --space-4xl: 96px;
+
+  <span style="color:var(--lime-bright);">/* Radii */</span>
+  --radius-sm: 8px;   --radius-md: 16px;
+  --radius-lg: 24px;  --radius-xl: 32px;
+  --radius-pill: 999px;
+
+  <span style="color:var(--lime-bright);">/* Shadows */</span>
+  --shadow-sm:  0 2px 8px rgba(4,188,172,0.06);
+  --shadow-md:  0 4px 16px rgba(4,188,172,0.08);
+  --shadow-lg:  0 8px 32px rgba(4,188,172,0.12);
+  --shadow-btn: 0 4px 12px rgba(4,188,172,0.25);
+}</pre>
+  </div>
+
+  <h3>Font Loading</h3>
+  <div style="background:var(--dark); border-radius:var(--radius-md); padding:1.5rem; margin:1.5rem 0; overflow-x:auto;">
+    <pre style="color:#a0b8b2; font-size:0.75rem; line-height:1.8; margin:0; font-family:'DM Mono', monospace; white-space:pre-wrap;"><span style="color:var(--lime-bright);">/* Google Fonts — preconnect for performance */</span>
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?
+  family=Playfair+Display:ital,wght@0,400;0,700;1,400
+  &family=DM+Sans:wght@400;500;600;700
+  &family=Caveat:wght@400;700
+  &display=swap" rel="stylesheet"&gt;</pre>
+  </div>
+
+  <h3>Accessibility Notes</h3>
+  <div class="color-usage-grid">
+    <div class="color-usage-item">
+      <div class="color-usage-dot" style="background:var(--teal-deep)"></div>
+      <div class="color-usage-text">
+        <h4>Color Contrast</h4>
+        <p>Ocean Teal (#04bcac) on white passes WCAG AA for large text. For body text, always use Dark (#0a1f1c) or Body Text (#2c3e3a) on light backgrounds.</p>
+      </div>
+    </div>
+    <div class="color-usage-item">
+      <div class="color-usage-dot" style="background:var(--dark); display:flex; align-items:center; justify-content:center; color:white; font-size:0.8rem; font-weight:700;">Aa</div>
+      <div class="color-usage-text">
+        <h4>Touch &amp; Focus</h4>
+        <p>All interactive elements need visible focus rings (use teal outline with 2px offset). Touch targets minimum 48×48px on mobile.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<div style="background:var(--dark); padding:3rem 1.5rem; text-align:center;">
+  <div style="font-family:var(--font-display); font-size:1.5rem; font-weight:700; color:var(--white); margin-bottom:0.5rem;">Jumani Surf School</div>
+  <div style="font-family:var(--font-handwritten); font-size:1.3rem; color:var(--teal-mid); margin-bottom:1.5rem;">Learn to Surf. Relax Your Soul.</div>
+  <div style="height:4px; width:120px; margin:0 auto 1.5rem; border-radius:2px; background:linear-gradient(90deg, var(--teal-deep), var(--teal-mid), var(--green-fresh), var(--green-lime), var(--lime-bright), var(--yellow-glow));"></div>
+  <div style="font-size:0.75rem; color:#5a7a72;">Visual Style Guide v1.0 &nbsp;·&nbsp; Dewata Beach, Galle, Sri Lanka</div>
+</div>
+
+</body>
+</html>

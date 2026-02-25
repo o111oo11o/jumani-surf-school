@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand Palette */
+  --color-teal-deep: #04bcac;
+  --color-teal-mid: #42cca3;
+  --color-green-fresh: #6eda96;
+  --color-green-lime: #9ae687;
+  --color-lime-bright: #c8f17a;
+  --color-yellow-glow: #f9f871;
+  --color-whatsapp: #25d366;
+
+  /* Neutrals */
+  --color-dark: #0a1f1c;
+  --color-dark-soft: #1a3330;
+  --color-text: #2c3e3a;
+  --color-text-muted: #5a7a72;
+  --color-sand: #f8f6f0;
+  --color-sand-warm: #ede8dc;
+  --color-border: #e6e1d6;
+
+  /* Font Families (set via next/font CSS variables) */
+  --font-display: var(--font-playfair-display), Georgia, serif;
+  --font-body: var(--font-dm-sans), -apple-system, sans-serif;
+  --font-handwritten: var(--font-caveat), cursive;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(4, 188, 172, 0.06);
+  --shadow-md: 0 4px 16px rgba(4, 188, 172, 0.08);
+  --shadow-lg: 0 8px 32px rgba(4, 188, 172, 0.12);
+  --shadow-btn: 0 4px 12px rgba(4, 188, 172, 0.25);
+}
+
+/* Base styles */
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-sand);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus ring utility */
+*:focus-visible {
+  outline: 2px solid var(--color-teal-deep);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background-color: color-mix(in srgb, var(--color-teal-deep) 20%, transparent);
+}
