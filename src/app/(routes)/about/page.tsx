@@ -10,11 +10,11 @@ import { TeamMemberCard } from "@/components/shared/team-member-card";
 import { createMetadata } from "@/lib/utils/metadata";
 import { siteMeta } from "@/lib/constants/metadata";
 import {
-  hero as fallbackHero,
+  hero,
   storyHeading,
   storyParagraphs,
   teamHeading,
-  team as fallbackTeam,
+  team,
   certificationsHeading,
   certificationsBody,
   certificateImages,
@@ -22,45 +22,13 @@ import {
   locationBody,
   landmarks,
   galleryHeading,
-  galleryImages as fallbackGallery,
+  galleryImages,
   ctaBanner,
 } from "@/lib/constants/about";
-import {
-  getTeamMembers,
-  getSiteSettings,
-  getGalleryImages,
-} from "@/lib/sanity/queries";
-import { urlFor } from "@/lib/sanity/image";
-import { mergeHeroImage, resolveGallery } from "@/lib/sanity/helpers";
-import type { TeamMember } from "@/types";
 
 export const metadata: Metadata = createMetadata(siteMeta.about);
 
-export default async function AboutPage() {
-  const [cmsTeam, cmsGallery, cmsSettings] = await Promise.all([
-    getTeamMembers(),
-    getGalleryImages("about"),
-    getSiteSettings(),
-  ]);
-
-  const hero = mergeHeroImage(fallbackHero, cmsSettings?.pageHeroes?.about);
-
-  const team: TeamMember[] =
-    cmsTeam.length > 0
-      ? cmsTeam.map((member) => ({
-          image: member.image
-            ? urlFor(member.image).width(320).height(320).fit("crop").url()
-            : "/images/hero-surf.jpg",
-          imageAlt: member.image?.alt ?? member.name,
-          name: member.name,
-          role: member.role,
-          certifications: member.certifications?.join(", "),
-          bio: member.bio,
-        }))
-      : fallbackTeam;
-
-  const galleryImages = resolveGallery(cmsGallery, fallbackGallery);
-
+export default function AboutPage() {
   return (
     <>
       <HeroSection content={hero} />

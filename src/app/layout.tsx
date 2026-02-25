@@ -3,6 +3,7 @@ import { Playfair_Display, DM_Sans, Caveat } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { JsonLd } from "@/components/shared/json-ld";
+import { SplashLoader } from "@/components/ui/splash-loader";
 import { siteMeta } from "@/lib/constants/metadata";
 import "./globals.css";
 
@@ -55,6 +56,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <JsonLd />
+        <SplashLoader />
       </body>
     </html>
   );
